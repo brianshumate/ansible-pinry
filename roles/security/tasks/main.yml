@@ -1,0 +1,9 @@
+---
+# File: roles/security/tasks/main.yml - Security role tasks
+
+- name: Install Fail2Ban
+  apt: pkg=fail2ban state=present
+  tags:
+    - packages
+    - security
+

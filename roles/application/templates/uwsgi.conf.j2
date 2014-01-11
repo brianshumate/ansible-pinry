@@ -1,0 +1,17 @@
+# File: uwsgi.conf - uWSGI configuration
+
+# based on the upstart script included in uwsgi.contrib:
+# https://github.com/unbit/uwsgi/blob/master/contrib/upstart/uwsgi.conf
+#
+
+description "uWSGI webapp handler"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+
+exec /usr/bin/uwsgi --emperor "/srv/www/*/conf/uwsgi.ini" \
+     --die-on-term --master --uid www-data --gid www-data \
+     --logto /var/log/uwsgi/emperor.log
+

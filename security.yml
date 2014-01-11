@@ -1,0 +1,8 @@
+---
+# File: security.yml - Pinry security playbook
+
+- hosts: servers
+  sudo: True
+  roles:
+    - security
+

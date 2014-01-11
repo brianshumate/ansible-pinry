@@ -1,0 +1,8 @@
+---
+# File: db.yml - Pinry database playbook
+
+- hosts: dbserver
+  sudo: True
+  roles:
+    - database
+

@@ -1,0 +1,6 @@
+---
+# file: roles/application/vars/main.yml - Application role variables
+
+virtualenv_root: "/home/{{ app_name }}/.virtualenvs/{{ app_name }}"
+
+

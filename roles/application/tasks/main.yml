@@ -1,0 +1,42 @@
+---
+# File: roles/application/tasks/main.yml - Application role tasks
+
+# Create and Configure Virtualenv
+
+- name: Install virtualenv
+  command: "virtualenv {{ virtualenv_root }}"
+
+# - name: Virtualenv permissions
+#  file: "path=/home/{{ app_name }}/.virtualenvs owner=pinry group=pinry recurse=yes"
+
+# Install OS Package Dependencies
+
+- name: Install uWSGI and plugins
+  apt: "pkg={{ item }} state=present"
+  with_items: application_packages
+
+# Clone GitHub Repository
+
+- name: Clone application source repository
+  git: "repo={{ app_repo }} dest={{ app_root }} update=no"
+
+# Install Requirements
+
+- name: Install app requirements
+  pip: "virtualenv={{ virtualenv_root }} requirements={{ app_requirements }}"
+
+# Configuration
+
+- name: Configure uWSGI
+  template: "src=example.ini.j2 dest={{ app_root }}/example.ini owner=pinry group=pinry mode=0644"
+  tags:
+    - configuration
+
+- name: Pinry permissions
+  file: "path=/home/{{ app_name }} owner=pinry group=pinry recurse=yes"
+
+# Sync DB
+
+- name: Synchronize app DB
+  django_manage: "command=syncdb app_path={{ app_root }} settings={{ app_settings }} virtualenv={{ virtualenv_root }} pythonpath={{ app_root }}"
+

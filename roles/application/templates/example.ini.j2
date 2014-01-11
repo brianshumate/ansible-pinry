@@ -1,0 +1,17 @@
+[uwsgi]
+processes = 4
+threads = 2
+master = True
+socket = /tmp/{{ app_name }}.sock
+chmod-socket = 664
+chdir = {{ app_home }}/{{ app_name }}
+virtualenv = {{ app_home }}/{{ app_name }}
+pythonpath = ..
+env = DJANGO_SETTINGS_MODULE=pinry.settings
+wsgi-file = {{ app_root }}/wsgi.py
+pidfile = /tmp/{{ app_name }}-master.pid
+
+# Debugging, etc.
+# stats = 127.0.0.1:9191
+# daemonize = /var/log/uwsgi/{{ app_name }}_uwsgi.log
+

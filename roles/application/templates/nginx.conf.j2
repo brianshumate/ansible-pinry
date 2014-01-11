@@ -1,0 +1,19 @@
+server {
+    listen 80 default;
+    server_name _;
+
+    access_log /srv/www/{{ app_name }}/logs/access.log;
+    error_log /srv/www/{{ app_name }}/logs/error.log;
+
+    location ~^/(static|media)/ {
+        root /srv/www/{{ app_name }};
+        expires max;
+        access_log off;
+    }
+
+    location / {
+        include uwsgi_params;
+        uwsgi_pass unix:/srv/www/{{ app_name }}/uwsgi/socket;
+    }
+}
+

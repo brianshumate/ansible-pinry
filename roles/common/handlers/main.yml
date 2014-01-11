@@ -1,0 +1,6 @@
+---
+# File: roles/common/handlers/main.yml - Common role handlers
+
+- name: restart ntp
+  service: name=ntp state=restarted
+

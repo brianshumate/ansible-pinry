@@ -1,0 +1,9 @@
+---
+# File: roles/database/vars/main.yml - Database role variables
+
+database:
+  root: "/var/db/FIXME"
+  host: "127.0.0.1"
+  port: "5432"
+  user: "pinry"
+

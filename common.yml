@@ -1,0 +1,7 @@
+---
+# File: common.yml - Pinry common playbook
+
+- hosts: servers
+  sudo: True
+  roles:
+    - common

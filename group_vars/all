@@ -1,0 +1,41 @@
+---
+# File: group_vars/all - group based variables
+
+
+app_name: pinry
+app_home: "/home/{{ app_name }}"
+app_port: "8080"
+app_root: "{{ app_home }}/{{ app_name }}/{{ app_name}}"
+app_repo: "https://github.com/{{ app_name }}/{{ app_name }}.git"
+app_requirements: "{{ app_root }}/requirements.txt"
+app_settings: "{{ app_name }}.settings"
+
+domain_name: "example.com"
+ntpserver0: "pool.ntp.org"
+
+os_packages:
+  - zsh
+  - build-essential
+  - git-core
+  - vim
+  - htop
+  - rsync
+  - tmux
+  - python-dev
+  - python-pip
+  - python-virtualenv
+  - libsane-dev
+  - libjpeg-dev
+  - zlib1g-dev
+  - libpq-dev
+
+dependency_packages:
+ - pygments
+ - 'git+git://github.com/Lokaltog/powerline'
+ - virtualenvwrapper
+
+application_packages:
+ - uwsgi
+ - uwsgi-plugin-python
+ - uwsgi-plugin-http
+

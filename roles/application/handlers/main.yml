@@ -1,0 +1,6 @@
+---
+# File: roles/application/handlers/main.yml - Application role handlers
+
+- name: restart uwsgi
+  service: name=uwsgi state=restarted
+

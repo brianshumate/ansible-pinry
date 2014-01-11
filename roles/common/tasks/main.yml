@@ -1,0 +1,62 @@
+---
+# File: roles/common/tasks/main.yml - Common role tasks
+
+# APT Packages
+
+- name: APT update and upgrade packages
+  apt: upgrade=yes update_cache=yes
+  tags:
+    - packages
+
+- name: Install OS packages
+  apt: "pkg={{ item }} state=present"
+  with_items: os_packages
+  tags:
+    - packages
+
+# NTP
+
+- name: Install NTP
+  apt: pkg=ntp state=present
+  tags:
+    - ntp
+
+- name: Configure NTP
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  notify:
+    - restart ntp
+  tags:
+    - ntp
+
+- name: NTP enable and start ntpd
+  service: name=ntp state=started enabled=yes
+  tags:
+    - ntp
+
+# Additional Python Packages
+
+- name: Install Python packages
+  pip: "name={{ item }}"
+  with_items: dependency_packages
+  tags:
+    - packages
+
+# User Account
+
+- name: Add pinry user
+  user: "name=pinry comment='Pinry User' uid=1042 home={{ app_home }} groups=sudo shell=/usr/bin/zsh"
+  tags:
+    - users
+
+# Shell Configuration
+
+- name: Configure pinry user shell
+  template: "src=dot.zshrc.j2 dest={{ app_home }}/.zshrc owner=pinry group=pinry mode=0644"
+
+# Authorized Keys
+
+- name: Add pinry user authorized key
+  authorized_key: user=pinry key="{{ lookup('file', 'pinry_id_rsa.pub') }}"
+  tags:
+    - users
+

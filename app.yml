@@ -1,0 +1,8 @@
+---
+# File: app.yml - Pinry application server playbook
+
+- hosts: appserver
+  sudo: True
+  roles:
+    - application
+

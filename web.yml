@@ -1,0 +1,8 @@
+---
+# File: web.yml - Pinry web playbook
+
+- hosts: webserver
+  sudo: True
+  roles:
+    - webserver
+

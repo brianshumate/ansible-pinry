@@ -1,0 +1,9 @@
+---
+# File: site.yml - Pinry site playbook
+
+- include: common.yml
+- include: db.yml
+- include: web.yml
+- include: app.yml
+- include: security.yml
+

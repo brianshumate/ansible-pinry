@@ -1,0 +1,5 @@
+.DS_Store
+.tm_properties
+.vagrant
+roles/common/files/pinry_id_rsa.pub
+

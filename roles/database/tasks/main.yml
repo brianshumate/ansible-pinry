@@ -1,0 +1,25 @@
+---
+# File: roles/database/tasks/main.yml - Database role tasks
+
+- name: Install PostgreSQL
+  apt: pkg=postgresql state=present
+  tags:
+    - database
+    - packages
+
+# create the DB
+# FIXME
+# - name: DATABASE create DB
+#   postgresql_db: db=example
+#                  encoding='UTF-8'
+#                  lc_collate='en_US.UTF-8'
+#                  lc_ctype='en_US.UTF-8'
+#   tags:
+#     - database
+
+# create the Django user & grant access to DB
+# - name: DATABASE add example user
+#   postgresql_user: db=example user=example password="password" priv=ALL/ALL:ALL
+#   tags:
+#     - database
+
