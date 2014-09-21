@@ -1,4 +1,4 @@
-## Pinry with Ansible Orchestration
+## Ansible Role for Pinry
 
                         _
                     ,.-" "-.,
@@ -59,7 +59,7 @@ the app:
 ```
 vagrant ssh
 sudo su - pinry
-cd /home/pinry/pinry/pinry
+cd pinry/pinry
 workon pinry
 python manage.py syncdb
 python manage.py migrate
@@ -68,7 +68,12 @@ python manage.py runserver 0.0.0.0:8000
 
 ## Production on Linux
 
-TL;DR: edit hosts in `production` and `ansible-playbook -i production site.yml`
+Edit hosts in the `production` inventory, make sure to change
+`app_settings` variable in `group_vars/all` and then run:
+
+```
+ansible-playbook -i production site.yml`
+```
 
 ### Launching The Application
 
@@ -84,16 +89,18 @@ python manage.py runserver 0.0.0.0:8000
 ```
 
 Ansible's `django_manage` module is useful and offers great convenience
-features, like kickstarting an app using *syncdb* and *migrate* commands.
+features, like kickstarting an app using *syncdb* and *migrate* commands
+if more automation in the deployment is necessary.
 
 Provided all of the above goes well, you should be able to access the
 development version of our application here:
 
 http://example.com:8000/
 
-Replace *example.com* in the above URL with the hostname you are using.
+Replace *example.com* in the above URL with the domain name for the host
+that you are using.
 
-### Production Deployment
+### Deployment
 
 This section is TBD and will cover:
 

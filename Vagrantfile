@@ -5,9 +5,9 @@
 # provider and Ansible provisioiner on Ubuntu virtual machine
 
 VAGRANTFILE_API_VERSION = "2"
-BOX_MEM = ENV['BOX_MEM'] || "1536"
-BOX_NAME =  ENV['BOX_NAME'] || "ringtail64"
-BOX_URI = ENV['BOX_URI'] || "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-13.04_chef-provisionerless.box"
+BOX_MEM = ENV['BOX_MEM'] || "2048"
+BOX_NAME =  ENV['BOX_NAME'] || "precise64"
+BOX_URI = ENV['BOX_URI'] || "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 CLUSTER_HOSTS = ENV['CLUSTER_HOSTS'] || "stage"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -28,6 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     pinry_config.vm.provision :ansible do |ansible|
       ansible.inventory_path = CLUSTER_HOSTS
       ansible.playbook = "site.yml"
+      ansible.limit = "all"
     end
   end
 end

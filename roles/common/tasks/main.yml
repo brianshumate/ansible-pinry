@@ -59,4 +59,3 @@
   authorized_key: user=pinry key="{{ lookup('file', 'pinry_id_rsa.pub') }}"
   tags:
     - users
-

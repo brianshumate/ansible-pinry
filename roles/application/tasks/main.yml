@@ -32,11 +32,17 @@
   tags:
     - configuration
 
+- name: Install development settings
+  template: "src=development.py.j2 dest={{ app_root }}/pinry/settings/development.py owner=pinry group=pinry mode=0644"
+
+- name: Install production settings
+  template: "src=production.py.j2 dest={{ app_root }}/pinry/settings/production.py owner=pinry group=pinry mode=0644"
+
 - name: Pinry permissions
   file: "path=/home/{{ app_name }} owner=pinry group=pinry recurse=yes"
 
 # Sync DB
-
-- name: Synchronize app DB
-  django_manage: "command=syncdb app_path={{ app_root }} settings={{ app_settings }} virtualenv={{ virtualenv_root }} pythonpath={{ app_root }}"
+# FIXME: This doesn't work right now
+#- name: Synchronize app DB
+#  django_manage: "command=syncdb app_path={{ app_root }} settings={{ app_settings }} virtualenv={{ virtualenv_root }} pythonpath={{ app_root }}"
 

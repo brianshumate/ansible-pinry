@@ -8,6 +8,7 @@ app_port: "8080"
 app_root: "{{ app_home }}/{{ app_name }}/{{ app_name}}"
 app_repo: "https://github.com/{{ app_name }}/{{ app_name }}.git"
 app_requirements: "{{ app_root }}/requirements.txt"
+app_secret_key: "csdjknwelfn49rh_CHANGE_ME_fsdfshsASASw3"
 app_settings: "{{ app_name }}.settings"
 
 domain_name: "example.com"
@@ -31,11 +32,9 @@ os_packages:
 
 dependency_packages:
  - pygments
- - 'git+git://github.com/Lokaltog/powerline'
  - virtualenvwrapper
 
 application_packages:
  - uwsgi
  - uwsgi-plugin-python
  - uwsgi-plugin-http
-
