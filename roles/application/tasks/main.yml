@@ -15,10 +15,13 @@
   apt: "pkg={{ item }} state=present"
   with_items: application_packages
 
+- name: Create app root
+  file: "path={{ app_root }} state=directory"
+
 # Clone GitHub Repository
 
 - name: Clone application source repository
-  git: "repo={{ app_repo }} dest={{ app_root }} update=no"
+  git: "repo={{ app_repo }} dest={{ app_root }} accept_hostkey=yes"
 
 # Install Requirements
 

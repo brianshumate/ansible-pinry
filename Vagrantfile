@@ -6,14 +6,12 @@
 
 VAGRANTFILE_API_VERSION = "2"
 BOX_MEM = ENV['BOX_MEM'] || "2048"
-BOX_NAME =  ENV['BOX_NAME'] || "precise64"
-BOX_URI = ENV['BOX_URI'] || "https://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+BOX_NAME =  ENV['BOX_NAME'] || "hashicorp/precise64"
 CLUSTER_HOSTS = ENV['CLUSTER_HOSTS'] || "stage"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define :pinry do |pinry_config|
     pinry_config.vm.box = BOX_NAME
-    pinry_config.vm.box_url = BOX_URI
     pinry_config.vm.network :private_network, ip: "10.1.10.42"
     pinry_config.vm.hostname = "pinry.local"
     pinry_config.ssh.forward_agent = true
@@ -32,4 +30,3 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 end
-

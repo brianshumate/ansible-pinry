@@ -1,5 +1,5 @@
 ---
-# File: group_vars/all - group based variables
+# File: group_vars/all - Ansible Pinry group based variables
 
 
 app_name: pinry
@@ -35,6 +35,6 @@ dependency_packages:
  - virtualenvwrapper
 
 application_packages:
- - uwsgi
+ - uwsgi-core
  - uwsgi-plugin-python
- - uwsgi-plugin-http
+# - uwsgi-plugin-http
